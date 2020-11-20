@@ -1,5 +1,6 @@
 # Learn Anywhere (not complete)
-this is a mobile application using flutter framework .
+This is a mobile application using flutter framework.
+
 Backend: https://github.com/BrahimChouih/eLearning_backend
 
 # About me
