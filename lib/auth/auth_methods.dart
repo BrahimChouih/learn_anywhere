@@ -16,10 +16,10 @@ class AuthMethods {
     Response response = await dio.post(
       apiUrl,
       data: {
-        // 'username': email,
-        // 'password': password,
-        'username': 'test@gmail.com',
-        'password': '123456',
+        'username': email,
+        'password': password,
+      //  'username': 'test@gmail.com',
+      //  'password': '123456',
       },
     );
     apiToken = response.data['token'];
