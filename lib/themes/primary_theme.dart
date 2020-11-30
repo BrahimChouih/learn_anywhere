@@ -7,4 +7,12 @@ ThemeData primaryTheme = ThemeData.light().copyWith(
     color: Color(0xff606060),
   ),
   textSelectionHandleColor: Color(0xff434343),
+  // bottomAppBarColor: Colors.transparent,
+);
+
+const TextStyle bCourseTitleStyle = TextStyle(
+  color: Colors.white,
+);
+const TextStyle bCourseOwnerStyle = TextStyle(
+  color: Color(0xffDBDBDB),
 );

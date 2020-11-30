@@ -19,7 +19,7 @@ class User {
   fromMap(Map<String, dynamic> map) {
     this.id = map['id'];
     this.email = map['email'];
-    this.userName = map['userName'];
+    this.userName = map['username'];
     this.country = map['country'];
 
     try {
@@ -31,9 +31,12 @@ class User {
         size: width * 0.11,
       );
     }
-
-    map['purchased_courses'].forEach((e) {
-      this.purchasedCourses.add(Course(e));
-    });
+    try {
+      map['purchased_courses'].forEach((e) {
+        this.purchasedCourses.add(Course(e));
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 }

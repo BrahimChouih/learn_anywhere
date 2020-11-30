@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:learn_anywhere/components/app_bars.dart';
 import 'package:learn_anywhere/components/custome_b_n_bar.dart';
 import 'package:learn_anywhere/controllers/bottom_navigation_controller.dart';
+import 'package:learn_anywhere/themes/size.dart';
 
 class PrimaryScreen extends StatelessWidget {
   final BottomNavigationBarController bNBController =
@@ -11,17 +12,16 @@ class PrimaryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       body: SafeArea(
+        bottom: false,
         child: Column(
           children: [
             PraimaryAppBar(),
             Expanded(
               child: GetBuilder<BottomNavigationBarController>(
                 builder: (_) {
-                  return Container(
-                      child: Center(
-                    child: bNBController.widget,
-                  ));
+                  return bNBController.widget;
                 },
               ),
             ),
@@ -34,7 +34,13 @@ class PrimaryScreen extends StatelessWidget {
         backgroundColor: Get.theme.primaryColor,
         onPressed: () {},
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(),
+      bottomNavigationBar: BottomAppBar(
+        notchMargin: width * 0.02,
+        color: Colors.transparent,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        shape: CircularNotchedRectangle(),
+        child: CustomBottomNavigationBar(),
+      ),
     );
   }
 }

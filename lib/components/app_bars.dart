@@ -8,28 +8,35 @@ class PraimaryAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(width: width * 0.02),
-          CircleAvatar(
-            child: AuthMethods.user.picture.runtimeType == Icon
-                ? AuthMethods.user.picture
-                : null,
-            backgroundImage: AuthMethods.user.picture.runtimeType.toString() ==
-                    'NetworkImage'
-                ? AuthMethods.user.picture
-                : null,
-            backgroundColor: Colors.transparent,
+          Container(
+            margin: EdgeInsets.only(left: width * 0.02),
+            child: CircleAvatar(
+              child: AuthMethods.user.picture.runtimeType == Icon
+                  ? AuthMethods.user.picture
+                  : null,
+              backgroundImage:
+                  AuthMethods.user.picture.runtimeType.toString() ==
+                          'NetworkImage'
+                      ? AuthMethods.user.picture
+                      : null,
+              backgroundColor: Colors.transparent,
+            ),
           ),
-          SizedBox(width: width * 0.6),
-          NotificationShoppingCart(
-            iconData: Icons.notifications_none,
-            onTap: () {},
-            numState: '2',
-          ),
-          NotificationShoppingCart(
-            iconData: Icons.shopping_cart_outlined,
-            onTap: () {},
-            numState: '+9',
+          Row(
+            children: [
+              NotificationShoppingCart(
+                iconData: Icons.notifications_none,
+                onTap: () {},
+                numState: '2',
+              ),
+              NotificationShoppingCart(
+                iconData: Icons.shopping_cart_outlined,
+                onTap: () {},
+                numState: '+9',
+              ),
+            ],
           ),
         ],
       ),
