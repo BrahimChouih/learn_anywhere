@@ -34,7 +34,7 @@ class PrimaryScreen extends StatelessWidget {
                       PurchasedCoursesScreen(),
                       MoreScreen(),
                     ],
-                    onPageChanged: bNBController.onTap,
+                    onPageChanged: bNBController.onPageChanged,
                   );
                 },
               ),

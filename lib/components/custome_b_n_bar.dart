@@ -3,10 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_anywhere/controllers/bottom_navigation_controller.dart';
-import 'package:learn_anywhere/screens/primary_screens/home_screen.dart';
-import 'package:learn_anywhere/screens/primary_screens/more_screen.dart';
-import 'package:learn_anywhere/screens/primary_screens/purchased_courses_screen.dart';
-import 'package:learn_anywhere/screens/primary_screens/search_screen.dart';
 import 'package:learn_anywhere/themes/size.dart';
 import 'package:learn_anywhere/themes/utils.dart';
 
