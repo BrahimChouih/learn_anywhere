@@ -35,14 +35,14 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             iconData: Icons.home,
             index: 0,
             onPressed: () {
-              bNBController.onTap(widget: HomeScreen(), newIndex: 0);
+              bNBController.onTap(0);
             },
           ),
           CustomBottomNavigationBarItem(
             iconData: Icons.youtube_searched_for,
             index: 1,
             onPressed: () {
-              bNBController.onTap(widget: SearchScreen(), newIndex: 1);
+              bNBController.onTap(1);
             },
           ),
           SizedBox(width: width * 0.1),
@@ -50,15 +50,14 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             iconData: Icons.verified,
             index: 2,
             onPressed: () {
-              bNBController.onTap(
-                  widget: PurchasedCoursesScreen(), newIndex: 2);
+              bNBController.onTap(2);
             },
           ),
           CustomBottomNavigationBarItem(
             iconData: Icons.menu,
             index: 3,
             onPressed: () {
-              bNBController.onTap(widget: MoreScreen(), newIndex: 3);
+              bNBController.onTap(3);
             },
           ),
         ],
