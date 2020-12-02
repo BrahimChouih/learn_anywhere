@@ -26,12 +26,11 @@ class APIMethods {
     }
 
     Response response = await dio.get(apiUrl, options: options);
-    print(response.data[0]);
+
     List<Course> courses = [];
     response.data.forEach((course) {
       courses.add(Course(course));
     });
-
-    return courses;
+    return courses.reversed.toList();
   }
 }

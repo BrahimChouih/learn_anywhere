@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:learn_anywhere/components/app_bars.dart';
 import 'package:learn_anywhere/components/custome_b_n_bar.dart';
 import 'package:learn_anywhere/controllers/bottom_navigation_controller.dart';
+import 'package:learn_anywhere/controllers/controllers.dart';
 import 'package:learn_anywhere/screens/primary_screens/more_screen.dart';
 import 'package:learn_anywhere/screens/primary_screens/purchased_courses_screen.dart';
 import 'package:learn_anywhere/screens/primary_screens/search_screen.dart';
@@ -13,9 +14,12 @@ import 'home_screen.dart';
 class PrimaryScreen extends StatelessWidget {
   final BottomNavigationBarController bNBController =
       Get.put(BottomNavigationBarController());
+  final CourseController courseController = Get.put(CourseController());
+
   static const idPrimaryScreen = 'primaryScreen';
   @override
   Widget build(BuildContext context) {
+    courseController.initCourses();
     return Scaffold(
       extendBody: true,
       body: SafeArea(
