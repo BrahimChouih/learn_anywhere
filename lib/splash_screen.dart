@@ -13,11 +13,16 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   goToScreen() async {
-    await AuthMethods.getTokenFromSP();
-    if (AuthMethods.apiToken == null) {
+    try {
+      await AuthMethods.getTokenFromSP();
+      if (AuthMethods.apiToken == null) {
+        Get.offAndToNamed(SignInUpScreen.idSignIn);
+      } else {
+        Get.offAndToNamed(PrimaryScreen.idPrimaryScreen);
+      }
+    } catch (e) {
+      AuthMethods.signOut();
       Get.offAndToNamed(SignInUpScreen.idSignIn);
-    } else {
-      Get.offAndToNamed(PrimaryScreen.idPrimaryScreen);
     }
   }
 

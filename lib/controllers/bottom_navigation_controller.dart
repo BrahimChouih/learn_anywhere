@@ -9,8 +9,8 @@ class BottomNavigationBarController extends GetxController {
     keepPage: true,
   );
 
+  // when tap on item from bottom navigator bar
   void onTap(int newIndex) {
-    this.currentIndex = newIndex;
     // pageController.jumpToPage(newIndex);
     print(newIndex);
     pageController.animateToPage(
@@ -21,6 +21,7 @@ class BottomNavigationBarController extends GetxController {
     update();
   }
 
+  // change state B.N.Bar's items when page view changed
   void onPageChanged(int newIndex) {
     this.currentIndex = newIndex;
     update();

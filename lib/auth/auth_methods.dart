@@ -18,8 +18,8 @@ class AuthMethods {
       data: {
         'username': email,
         'password': password,
-      //  'username': 'test@gmail.com',
-      //  'password': '123456',
+        //  'username': 'test@gmail.com',
+        //  'password': '123456',
       },
     );
     apiToken = response.data['token'];
@@ -59,6 +59,7 @@ class AuthMethods {
     await sharedPreferences.clear();
     apiToken = null;
     Get.offAndToNamed(SignInUpScreen.idSignIn);
+    Get.reset();
   }
 
   static Future<void> getTokenFromSP() async {

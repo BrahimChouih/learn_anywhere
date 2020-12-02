@@ -7,7 +7,8 @@ class UserController extends GetxController {}
 
 class CourseController extends GetxController {
   List<Course> courses = [];
-  ScrollController scrollController = ScrollController(keepScrollOffset: true);
+  ScrollController scrollController = ScrollController();
+  double lastOffset = 0.0;
   bool connecting = false;
 
   initCourses() async {

@@ -18,9 +18,22 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget coursesListView() {
+    // wait connecting
     if (courseController.connecting) {
       return Center(child: CircularProgressIndicator());
     }
+
+    // go to last postion
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      try {
+        courseController.scrollController.jumpTo(courseController.lastOffset);
+      } catch (e) {}
+    });
+
+    // save current postion
+    courseController.scrollController.addListener(() {
+      courseController.lastOffset = courseController.scrollController.offset;
+    });
 
     if (courseController.courses.length != 0) {
       return RefreshIndicator(

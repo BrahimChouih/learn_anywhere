@@ -3,8 +3,8 @@ import 'package:learn_anywhere/auth/auth_methods.dart';
 import 'package:learn_anywhere/models/course.dart';
 import 'package:learn_anywhere/models/user.dart';
 
-// const api = 'http://192.168.1.30:8000';
-const api = 'https://brahimchouih.pythonanywhere.com/';
+const api = 'http://192.168.1.30:8000';
+// const api = 'https://brahimchouih.pythonanywhere.com/';
 Dio dio = Dio();
 
 class APIMethods {
