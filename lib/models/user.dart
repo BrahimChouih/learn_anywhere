@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:learn_anywhere/api/api_methods.dart';
 import 'package:learn_anywhere/models/course.dart';
-import 'package:learn_anywhere/themes/size.dart';
 
 class User {
   int id;
@@ -25,11 +23,7 @@ class User {
     try {
       this.picture = NetworkImage(api + map['picture']);
     } catch (e) {
-      this.picture = Icon(
-        Icons.account_circle_outlined,
-        color: Get.theme.iconTheme.color,
-        size: width * 0.11,
-      );
+      this.picture = Icons.account_circle_outlined;
     }
     try {
       map['purchased_courses'].forEach((e) {

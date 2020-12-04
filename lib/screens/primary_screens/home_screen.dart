@@ -6,6 +6,7 @@ import 'package:learn_anywhere/models/course.dart';
 
 class HomeScreen extends StatelessWidget {
   final CourseController courseController = Get.find();
+  ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,13 +27,13 @@ class HomeScreen extends StatelessWidget {
     // go to last postion
     WidgetsBinding.instance.addPostFrameCallback((_) {
       try {
-        courseController.scrollController.jumpTo(courseController.lastOffset);
+        scrollController.jumpTo(courseController.lastOffset);
       } catch (e) {}
     });
 
     // save current postion
-    courseController.scrollController.addListener(() {
-      courseController.lastOffset = courseController.scrollController.offset;
+    scrollController.addListener(() {
+      courseController.lastOffset = scrollController.offset;
     });
 
     if (courseController.courses.length != 0) {
@@ -41,7 +42,7 @@ class HomeScreen extends StatelessWidget {
           courseController.initCourses();
         },
         child: ListView.builder(
-          controller: courseController.scrollController,
+          controller: scrollController,
           itemCount: courseController.courses.length,
           itemBuilder: (_, i) {
             Course course = courseController.courses[i];

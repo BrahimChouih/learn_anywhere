@@ -58,6 +58,7 @@ class AuthMethods {
   static void signOut() async {
     await sharedPreferences.clear();
     apiToken = null;
+    user = null;
     Get.offAndToNamed(SignInUpScreen.idSignIn);
     Get.reset();
   }
