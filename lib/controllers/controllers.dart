@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:learn_anywhere/api/api_methods.dart';
+import 'package:learn_anywhere/auth/auth_methods.dart';
 import 'package:learn_anywhere/models/course.dart';
 
 class UserController extends GetxController {}
@@ -47,6 +48,21 @@ class SearchController extends CourseController {
       }
     });
     this.lastOffset = 0.0;
+    update();
+  }
+}
+
+class PurchasedCoursesController extends CourseController {
+  PurchasedCoursesController() {
+    initCourses();
+  }
+  @override
+  initCourses() async {
+    connecting = true;
+    update();
+    await AuthMethods.refreshUserInfo();
+    courses = AuthMethods.user.purchasedCourses;
+    connecting = false;
     update();
   }
 }

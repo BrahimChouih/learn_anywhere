@@ -27,6 +27,7 @@ class AuthMethods {
     sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setString('apiToken', apiToken);
     user = await APIMethods.getUserInfo();
+    print(user.email);
   }
 
   static void signUp({String email, String username, String password}) async {
@@ -69,5 +70,9 @@ class AuthMethods {
     if (apiToken != null) {
       user = await APIMethods.getUserInfo();
     }
+  }
+
+  static Future<void> refreshUserInfo() async {
+    user = await APIMethods.getUserInfo();
   }
 }

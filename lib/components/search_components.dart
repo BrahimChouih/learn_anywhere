@@ -32,7 +32,11 @@ class SearchField extends StatelessWidget {
 
 class SearchResultItem extends StatelessWidget {
   final Course course;
-  SearchResultItem({this.course});
+  final String mode;
+  SearchResultItem({
+    this.course,
+    this.mode = 'search',
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -79,10 +83,12 @@ class SearchResultItem extends StatelessWidget {
                 rate: course.rate,
                 numReviewers: course.numReviewers,
               ),
-              Text(
-                course.price.toString() + ' \$',
-                style: bCourseOwnerStyle,
-              ),
+              mode == 'search'
+                  ? Text(
+                      course.price.toString() + ' \$',
+                      style: bCourseOwnerStyle,
+                    )
+                  : Container(),
             ],
           ),
         ],

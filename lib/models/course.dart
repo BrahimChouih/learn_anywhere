@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:learn_anywhere/api/api_methods.dart';
 import 'package:learn_anywhere/models/category.dart';
 import 'package:learn_anywhere/models/user.dart';
 
@@ -25,11 +26,21 @@ class Course {
     this.price = map['price'];
     this.rate = map['rate'];
     this.numReviewers = map['numReviewers'];
-    this.category = Category(map['category']);
-    this.owner = User(map['owner']);
     this.students = map['students'].length;
-    this.cover = NetworkImage(map['cover']);
 
-    print(rate);
+    if (map['cover'].toString().contains(api)) {
+      // cover = image URL
+      this.cover = NetworkImage(map['cover']);
+    } else {
+      // cover = image PATH in server
+      this.cover = NetworkImage(api + map['cover']);
+    }
+
+    try {
+      this.category = Category(map['category']);
+    } catch (e) {}
+    try {
+      this.owner = User(map['owner']);
+    } catch (e) {}
   }
 }

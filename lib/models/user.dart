@@ -8,7 +8,7 @@ class User {
   String userName;
   String country;
   var picture;
-  List<dynamic> purchasedCourses = [];
+  List<Course> purchasedCourses = [];
 
   User(Map<String, dynamic> map) {
     fromMap(map);
@@ -26,7 +26,9 @@ class User {
       this.picture = Icons.account_circle_outlined;
     }
     try {
+      print(map['purchased_courses']);
       map['purchased_courses'].forEach((e) {
+        print(e);
         this.purchasedCourses.add(Course(e));
       });
     } catch (e) {
