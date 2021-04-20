@@ -5,7 +5,7 @@ import 'package:learn_anywhere/auth/auth_methods.dart';
 import 'package:learn_anywhere/components/login_comp.dart';
 import 'package:learn_anywhere/screens/primary_screens/primary_screen.dart';
 import 'package:learn_anywhere/themes/size.dart';
-import 'package:learn_anywhere/themes/utils.dart';
+import 'package:learn_anywhere/themes/primary_theme.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class SignInUpScreen extends StatefulWidget {
@@ -149,7 +149,7 @@ class _SignInUpScreenState extends State<SignInUpScreen> {
     }
 
     if (AuthMethods.apiToken != null) {
-      Get.offAndToNamed(PrimaryScreen.idPrimaryScreen);
+      Get.offAndToNamed(PrimaryScreen.id);
     }
     setState(() {
       inAsyncCall = false;

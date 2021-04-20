@@ -6,7 +6,7 @@ import 'package:learn_anywhere/screens/primary_screens/primary_screen.dart';
 import 'package:learn_anywhere/themes/size.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const idSplashScreen = 'SplashScreen';
+  static const id = 'SplashScreen';
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (AuthMethods.apiToken == null) {
         Get.offAndToNamed(SignInUpScreen.idSignIn);
       } else {
-        Get.offAndToNamed(PrimaryScreen.idPrimaryScreen);
+        Get.offAndToNamed(PrimaryScreen.id);
       }
     } catch (e) {
       AuthMethods.signOut();

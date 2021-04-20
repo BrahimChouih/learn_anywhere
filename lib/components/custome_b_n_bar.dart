@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_anywhere/controllers/bottom_navigation_controller.dart';
 import 'package:learn_anywhere/themes/size.dart';
-import 'package:learn_anywhere/themes/utils.dart';
+import 'package:learn_anywhere/utils/utils.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   @override

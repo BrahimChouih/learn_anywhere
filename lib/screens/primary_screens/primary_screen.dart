@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_anywhere/components/app_bars.dart';
+import 'package:learn_anywhere/components/praimary_app_bars.dart';
 import 'package:learn_anywhere/components/custome_b_n_bar.dart';
 import 'package:learn_anywhere/controllers/bottom_navigation_controller.dart';
 import 'package:learn_anywhere/controllers/controllers.dart';
@@ -16,7 +16,7 @@ class PrimaryScreen extends StatelessWidget {
       Get.put(BottomNavigationBarController());
   final CourseController courseController = Get.put(CourseController());
 
-  static const idPrimaryScreen = 'primaryScreen';
+  static const id = 'primaryScreen';
   @override
   Widget build(BuildContext context) {
     courseController.initCourses();

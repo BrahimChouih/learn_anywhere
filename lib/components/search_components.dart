@@ -5,6 +5,7 @@ import 'package:learn_anywhere/models/course.dart';
 import 'package:learn_anywhere/themes/primary_theme.dart';
 import 'package:learn_anywhere/themes/size.dart';
 
+import '../themes/size.dart';
 import 'home_components.dart';
 
 class SearchField extends StatelessWidget {
@@ -56,6 +57,7 @@ class SearchResultItem extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
+            flex: 5,
             child: Container(
               height: height * 0.2,
               margin: EdgeInsets.only(right: width * 0.02),
@@ -68,28 +70,31 @@ class SearchResultItem extends StatelessWidget {
               ),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                course.title.toUpperCase(),
-                style: bCourseTitleStyle,
-              ),
-              Text(
-                course.owner.userName.toUpperCase(),
-                style: bCourseOwnerStyle,
-              ),
-              RateStars(
-                rate: course.rate,
-                numReviewers: course.numReviewers,
-              ),
-              mode == 'search'
-                  ? Text(
-                      course.price.toString() + ' \$',
-                      style: bCourseOwnerStyle,
-                    )
-                  : Container(),
-            ],
+          Expanded(
+            flex: 4,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  course.title.toUpperCase(),
+                  style: bCourseTitleStyle,
+                ),
+                Text(
+                  course.owner.userName.toUpperCase(),
+                  style: bCourseOwnerStyle,
+                ),
+                RateStars(
+                  rate: course.rate,
+                  numReviewers: course.numReviewers,
+                ),
+                mode == 'search'
+                    ? Text(
+                        course.price.toString() + ' \$',
+                        style: bCourseOwnerStyle,
+                      )
+                    : Container(),
+              ],
+            ),
           ),
         ],
       ),

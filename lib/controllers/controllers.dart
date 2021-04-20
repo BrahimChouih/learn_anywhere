@@ -4,8 +4,6 @@ import 'package:learn_anywhere/api/api_methods.dart';
 import 'package:learn_anywhere/auth/auth_methods.dart';
 import 'package:learn_anywhere/models/course.dart';
 
-class UserController extends GetxController {}
-
 class CourseController extends GetxController {
   List<Course> courses = [];
   double lastOffset = 0.0;

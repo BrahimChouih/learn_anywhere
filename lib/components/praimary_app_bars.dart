@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_anywhere/auth/auth_methods.dart';
 import 'package:learn_anywhere/components/user_picture.dart';
+import 'package:learn_anywhere/screens/profile_screen/profile_screen.dart';
 import 'package:learn_anywhere/themes/size.dart';
 
 class PraimaryAppBar extends StatelessWidget {
@@ -10,9 +12,21 @@ class PraimaryAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            margin: EdgeInsets.only(left: width * 0.02),
-            child: UserPicture(size: width * 0.09),
+          InkWell(
+            child: Container(
+              margin: EdgeInsets.only(left: width * 0.02),
+              child: UserPicture(
+                size: width * 0.09,
+                user: AuthMethods.user,
+              ),
+            ),
+            onTap: () {
+              // Get.toNamed(ProfileScreen.id);
+              Get.to(ProfileScreen(
+                user: AuthMethods.user,
+                // isMe: false,
+              ));
+            },
           ),
           Row(
             children: [

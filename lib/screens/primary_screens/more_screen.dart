@@ -20,7 +20,10 @@ class MoreScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    UserPicture(size: width * 0.4),
+                    UserPicture(
+                      size: width * 0.4,
+                      user: AuthMethods.user,
+                    ),
                     Text(
                       AuthMethods.user.userName.toUpperCase(),
                       style: bUserNameStyle,

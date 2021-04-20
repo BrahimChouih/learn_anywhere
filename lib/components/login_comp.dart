@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_anywhere/themes/size.dart';
-import 'package:learn_anywhere/themes/utils.dart';
+import 'package:learn_anywhere/utils/utils.dart';
 
 class EmailPasswordField extends StatelessWidget {
   String hintText;

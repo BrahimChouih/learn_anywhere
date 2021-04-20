@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' as getx;
 import 'package:learn_anywhere/api/api_methods.dart';
 import 'package:learn_anywhere/models/user.dart';
 import 'package:learn_anywhere/screens/auth_screens/sign_in_up.dart';
@@ -16,10 +16,10 @@ class AuthMethods {
     Response response = await dio.post(
       apiUrl,
       data: {
-        'username': email,
-        'password': password,
-        //  'username': 'test@gmail.com',
-        //  'password': '123456',
+        // 'username': email,
+        // 'password': password,
+        'username': 'brahim@gmail.com',
+        'password': 'anabrahim',
       },
     );
     apiToken = response.data['token'];
@@ -60,8 +60,8 @@ class AuthMethods {
     await sharedPreferences.clear();
     apiToken = null;
     user = null;
-    Get.offAndToNamed(SignInUpScreen.idSignIn);
-    Get.reset();
+    getx.Get.offAndToNamed(SignInUpScreen.idSignIn);
+    getx.Get.reset();
   }
 
   static Future<void> getTokenFromSP() async {

@@ -19,3 +19,11 @@ const TextStyle bCourseOwnerStyle = TextStyle(
 const TextStyle bUserNameStyle = TextStyle(
   fontSize: 20,
 );
+
+const TextStyle bTextStyle = TextStyle(
+  fontWeight: FontWeight.w500,
+  color: Color(0xff606060),
+);
+const TextStyle bTitleStyle = TextStyle(
+  fontSize: 21,
+);
