@@ -9,6 +9,7 @@ class User {
   String country;
   var picture;
   List<Course> purchasedCourses = [];
+  List<Course> coursesMadeByUser = [];
 
   User(Map<String, dynamic> map) {
     fromMap(map);
@@ -23,7 +24,7 @@ class User {
     try {
       this.picture = NetworkImage(api + map['picture']);
     } catch (e) {
-      this.picture = Icons.account_circle_outlined;
+      // this.picture = Icons.account_circle_outlined;
     }
     try {
       print(map['purchased_courses']);

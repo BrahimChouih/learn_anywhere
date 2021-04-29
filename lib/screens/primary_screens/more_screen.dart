@@ -22,7 +22,7 @@ class MoreScreen extends StatelessWidget {
                   children: [
                     UserPicture(
                       size: width * 0.4,
-                      user: AuthMethods.user,
+                      picture: AuthMethods.user.picture,
                     ),
                     Text(
                       AuthMethods.user.userName.toUpperCase(),

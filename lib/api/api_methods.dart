@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:dio/dio.dart';
 import 'package:learn_anywhere/auth/auth_methods.dart';
 import 'package:learn_anywhere/models/course.dart';
@@ -9,15 +11,41 @@ Dio dio = Dio();
 
 class APIMethods {
   static Options options;
-  static Future<User> getUserInfo() async {
-    String apiUrl = '$api/api/auth/userinfo/0/';
+  static Future<User> getUserInfo({int id = 0}) async {
+    String apiUrl = '$api/api/auth/userinfo/$id/';
 
     options = Options(headers: {
       'Authorization': 'token ${AuthMethods.apiToken}',
     });
 
-    Response response = await dio.get(apiUrl, options: options);
+    Response response = await dio
+        .get(apiUrl, options: options)
+        .timeout(Duration(seconds: 15), onTimeout: () {
+      throw Exception('Check your internet connection !!');
+    });
     return User(response.data);
+  }
+
+  static Future<List<Course>> getCoursesMadeByUser({int id}) async {
+    id == null ? id = AuthMethods.user.id : null;
+
+    String apiUrl = '$api/api/coursesMadeByUser/$id/';
+
+    Response response = await dio
+        .get(apiUrl, options: options)
+        .timeout(Duration(seconds: 15), onTimeout: () {
+      throw Exception('There is an error !!!');
+    });
+    List<Course> courses = [];
+    response.data.forEach((course) {
+      courses.add(Course(course));
+    });
+
+    if (id == AuthMethods.user.id && courses.isNotEmpty) {
+      AuthMethods.user.coursesMadeByUser = courses;
+    }
+
+    return courses;
   }
 
   static Future<List<Course>> getAllCourses({String id}) async {
@@ -34,5 +62,28 @@ class APIMethods {
       courses.add(Course(course));
     });
     return courses.reversed.toList();
+  }
+
+  static Future<Response> updateUserInfo(Map<String, dynamic> userData) async {
+    String apiUrl = '$api/api/auth/userinfo/${AuthMethods.user.id}/';
+
+    FormData formdata = FormData.fromMap(userData);
+    Response response;
+    response = await dio
+        .post(
+      apiUrl,
+      data: formdata,
+      options: options,
+    )
+        .onError<DioError>(
+      (error, stackTrace) {
+        // print(error.response.data);
+        throw error;
+      },
+    );
+    if (response.statusCode != 200) {
+      throw Exception(response.statusMessage);
+    }
+    return response;
   }
 }

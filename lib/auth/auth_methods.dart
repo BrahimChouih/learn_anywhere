@@ -16,10 +16,10 @@ class AuthMethods {
     Response response = await dio.post(
       apiUrl,
       data: {
-        // 'username': email,
-        // 'password': password,
-        'username': 'brahim@gmail.com',
-        'password': 'anabrahim',
+        'username': email,
+        'password': password,
+        // 'username': 'brahim@gmail.com',
+        // 'password': 'anabrahim',
       },
     );
     apiToken = response.data['token'];
@@ -66,7 +66,7 @@ class AuthMethods {
 
   static Future<void> getTokenFromSP() async {
     sharedPreferences = await SharedPreferences.getInstance();
-    apiToken = await sharedPreferences.getString('apiToken');
+    apiToken = sharedPreferences.getString('apiToken');
     if (apiToken != null) {
       user = await APIMethods.getUserInfo();
     }

@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:learn_anywhere/api/api_methods.dart';
 import 'package:learn_anywhere/auth/auth_methods.dart';
 import 'package:learn_anywhere/screens/auth_screens/sign_in_up.dart';
 import 'package:learn_anywhere/screens/primary_screens/primary_screen.dart';
@@ -21,14 +25,27 @@ class _SplashScreenState extends State<SplashScreen> {
         Get.offAndToNamed(PrimaryScreen.id);
       }
     } catch (e) {
-      AuthMethods.signOut();
-      Get.offAndToNamed(SignInUpScreen.idSignIn);
+      print(e);
+      Get.snackbar(
+        "error",
+        e.toString(),
+        duration: Duration(seconds: 8),
+        snackPosition: SnackPosition.BOTTOM,
+        snackbarStatus: (SnackbarStatus status) {
+          if (status == SnackbarStatus.CLOSED) {
+            SystemNavigator.pop();
+          }
+        },
+      );
     }
   }
 
   @override
   void initState() {
-    goToScreen();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      goToScreen();
+    });
+
     super.initState();
   }
 

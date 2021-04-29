@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_anywhere/auth/auth_methods.dart';
 import 'package:learn_anywhere/components/user_picture.dart';
+import 'package:learn_anywhere/controllers/app_bar_controller.dart';
 import 'package:learn_anywhere/screens/profile_screen/profile_screen.dart';
 import 'package:learn_anywhere/themes/size.dart';
 
 class PraimaryAppBar extends StatelessWidget {
+  final AppBarController appBarController = Get.put(AppBarController());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,9 +17,12 @@ class PraimaryAppBar extends StatelessWidget {
           InkWell(
             child: Container(
               margin: EdgeInsets.only(left: width * 0.02),
-              child: UserPicture(
-                size: width * 0.09,
-                user: AuthMethods.user,
+              child: GetBuilder<AppBarController>(
+                id: AppBarController.usrPictureID,
+                builder: (_) => UserPicture(
+                  size: width * 0.09,
+                  picture: AuthMethods.user.picture,
+                ),
               ),
             ),
             onTap: () {
@@ -30,15 +35,25 @@ class PraimaryAppBar extends StatelessWidget {
           ),
           Row(
             children: [
-              NotificationShoppingCart(
-                iconData: Icons.notifications_none,
-                onTap: () {},
-                numState: '2',
+              GetBuilder<AppBarController>(
+                id: AppBarController.notifID,
+                builder: (_) => NotificationShoppingCart(
+                  iconData: Icons.notifications_none,
+                  onTap: () {
+                    appBarController.onChangenotificationsCount();
+                  },
+                  numState: appBarController.notificationsCount,
+                ),
               ),
-              NotificationShoppingCart(
-                iconData: Icons.shopping_cart_outlined,
-                onTap: () {},
-                numState: '+9',
+              GetBuilder<AppBarController>(
+                id: AppBarController.shCartID,
+                builder: (_) => NotificationShoppingCart(
+                  iconData: Icons.shopping_cart_outlined,
+                  onTap: () {
+                    appBarController.onChangeShoppingCartCount();
+                  },
+                  numState: appBarController.shoppingCartCount,
+                ),
               ),
             ],
           ),
@@ -51,7 +66,7 @@ class PraimaryAppBar extends StatelessWidget {
 class NotificationShoppingCart extends StatelessWidget {
   final IconData iconData;
   final Function onTap;
-  String numState;
+  int numState;
   NotificationShoppingCart({this.iconData, this.onTap, this.numState});
 
   @override
@@ -69,7 +84,7 @@ class NotificationShoppingCart extends StatelessWidget {
             backgroundColor: Colors.red,
             radius: width * 0.025,
             child: Text(
-              '$numState',
+              numState < 10 ? '$numState' : '+9',
               style: TextStyle(fontSize: 11),
             ),
           ),
