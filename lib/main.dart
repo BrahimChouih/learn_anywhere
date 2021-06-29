@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:learn_anywhere/screens/course/course_screen.dart';
 import 'package:learn_anywhere/screens/primary_screens/primary_screen.dart';
 import 'package:learn_anywhere/splash_screen.dart';
 import 'package:learn_anywhere/themes/primary_theme.dart';
@@ -16,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       theme: primaryTheme,
+      debugShowCheckedModeBanner: false,
       // theme: ThemeData.dark(),
       initialRoute: SplashScreen.id,
 
@@ -35,6 +38,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: SplashScreen.id,
           page: () => SplashScreen(),
+        ),
+        GetPage(
+          name: CoueseScreen.id,
+          page: () => CoueseScreen(),
         ),
       ],
     );

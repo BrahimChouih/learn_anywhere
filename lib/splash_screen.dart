@@ -42,6 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       goToScreen();
     });

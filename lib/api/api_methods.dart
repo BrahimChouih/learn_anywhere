@@ -1,11 +1,11 @@
-import 'dart:ffi';
-
 import 'package:dio/dio.dart';
 import 'package:learn_anywhere/auth/auth_methods.dart';
 import 'package:learn_anywhere/models/course.dart';
+import 'package:learn_anywhere/models/reviewer.dart';
 import 'package:learn_anywhere/models/user.dart';
 
 const api = 'http://192.168.1.30:8000';
+// const api = 'https://brahim-chouih-learn-anywhere.herokuapp.com';
 // const api = 'https://brahimchouih.pythonanywhere.com/';
 Dio dio = Dio();
 
@@ -45,7 +45,7 @@ class APIMethods {
       AuthMethods.user.coursesMadeByUser = courses;
     }
 
-    return courses;
+    return courses.reversed.toList();
   }
 
   static Future<List<Course>> getAllCourses({String id}) async {
@@ -85,5 +85,37 @@ class APIMethods {
       throw Exception(response.statusMessage);
     }
     return response;
+  }
+
+  static Future<List<Reviewer>> getReviewersOnCourse(int courseId) async {
+    String apiUrl = '$api/api/reviewers/$courseId/';
+
+    Response response = await dio.get(apiUrl, options: options);
+
+    List<Reviewer> reviewers = [];
+
+    response.data.forEach((reviewer) {
+      reviewers.add(Reviewer(reviewer));
+    });
+
+    return reviewers;
+  }
+
+  static Future<Reviewer> addReviewOnCourse(Reviewer reviewer) async {
+    String apiUrl = '$api/api/reviewers/';
+
+    Map<String, dynamic> data = reviewer.toJson();
+
+    Response response = await dio.post(apiUrl, data: data, options: options);
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return Reviewer(response.data);
+    } else {
+      throw DioError(
+        requestOptions: RequestOptions(path: apiUrl),
+        response: response,
+        type: DioErrorType.response,
+      );
+    }
   }
 }

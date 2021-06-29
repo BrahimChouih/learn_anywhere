@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:learn_anywhere/components/home_components.dart';
 import 'package:learn_anywhere/controllers/controllers.dart';
 import 'package:learn_anywhere/models/course.dart';
+import 'package:learn_anywhere/screens/course/course_screen.dart';
 import 'package:learn_anywhere/themes/size.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -55,7 +56,19 @@ class HomeScreen extends StatelessWidget {
               itemCount: courseController.courses.length,
               itemBuilder: (_, i) {
                 Course course = courseController.courses[i];
-                return CourseItem(course: course);
+                return InkWell(
+                  onTap: () {
+                    Get.to(
+                      CoueseScreen(
+                        course: course,
+                      ),
+                      // transition: Transition.rightToLeft,
+                      // curve: Curves.easeIn,
+                      // duration: Duration(microseconds: 500),
+                    );
+                  },
+                  child: CourseItem(course: course),
+                );
               },
             )
           : Center(

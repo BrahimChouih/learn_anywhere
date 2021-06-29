@@ -26,15 +26,17 @@ class Course {
     this.price = map['price'];
     this.rate = map['rate'];
     this.numReviewers = map['numReviewers'];
-    this.students = map['students'].length;
+    this.students = map['students']?.length;
 
-    if (map['cover'].toString().contains(api)) {
-      // cover = image URL
-      this.cover = NetworkImage(map['cover']);
-    } else {
-      // cover = image PATH in server
-      this.cover = NetworkImage(api + map['cover']);
-    }
+    try {
+      if (map['cover'].toString().contains(api)) {
+        // cover = image URL
+        this.cover = NetworkImage(map['cover']);
+      } else {
+        // cover = image PATH in server
+        this.cover = NetworkImage(api + map['cover']);
+      }
+    } catch (e) {}
 
     try {
       this.category = Category(map['category']);
@@ -42,5 +44,17 @@ class Course {
     try {
       this.owner = User(map['owner']);
     } catch (e) {}
+  }
+
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> map = {};
+    map['id'] = this.id;
+    map['title'] = this.title;
+    map['description'] = this.description;
+    map['create_at'] = this.create_at;
+    map['price'] = this.price;
+    map['rate'] = this.rate;
+    map['numReviewers'] = this.numReviewers;
+    return map;
   }
 }

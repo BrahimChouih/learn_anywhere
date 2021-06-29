@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:learn_anywhere/models/course.dart';
+import 'package:learn_anywhere/screens/course/course_screen.dart';
 import 'package:learn_anywhere/themes/primary_theme.dart';
 import 'package:learn_anywhere/themes/size.dart';
 
@@ -26,18 +28,21 @@ class RateStars extends StatelessWidget {
       ));
     }
     String numR = '';
-    if (numReviewers >= 1000) {
-      double number = numReviewers / 1000;
-      numR = '${number.toStringAsFixed(1)}k';
-    } else {
-      numR = '$numReviewers';
-    }
+    if (numReviewers != null) {
+      if (numReviewers >= 1000) {
+        double number = numReviewers / 1000;
+        numR = '(${number.toStringAsFixed(1)}k)';
+      } else {
+        numR = '($numReviewers)';
+      }
 
-    rateWidgets.add(Text(
-      '($numR)',
-      style: bCourseOwnerStyle,
-    ));
+      rateWidgets.add(Text(
+        '$numR',
+        style: bCourseOwnerStyle,
+      ));
+    }
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: rateWidgets,
     );
   }

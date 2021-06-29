@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_anywhere/controllers/controllers.dart';
 import 'package:learn_anywhere/models/course.dart';
+import 'package:learn_anywhere/screens/course/course_screen.dart';
 import 'package:learn_anywhere/themes/primary_theme.dart';
 import 'package:learn_anywhere/themes/size.dart';
 
@@ -54,49 +55,56 @@ class SearchResultItem extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 5,
-            child: Container(
-              height: height * 0.2,
-              margin: EdgeInsets.only(right: width * 0.02),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: course.cover,
-                  fit: BoxFit.cover,
+      child: InkWell(
+        onTap: () {
+          Get.to(CoueseScreen(
+            course: course,
+          ));
+        },
+        child: Row(
+          children: [
+            Expanded(
+              flex: 5,
+              child: Container(
+                height: height * 0.2,
+                margin: EdgeInsets.only(right: width * 0.02),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: course.cover,
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.circular(30),
                 ),
-                borderRadius: BorderRadius.circular(30),
               ),
             ),
-          ),
-          Expanded(
-            flex: 4,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  course.title.toUpperCase(),
-                  style: bCourseTitleStyle,
-                ),
-                Text(
-                  course.owner.userName.toUpperCase(),
-                  style: bCourseOwnerStyle,
-                ),
-                RateStars(
-                  rate: course.rate,
-                  numReviewers: course.numReviewers,
-                ),
-                mode == 'search'
-                    ? Text(
-                        course.price.toString() + ' \$',
-                        style: bCourseOwnerStyle,
-                      )
-                    : Container(),
-              ],
+            Expanded(
+              flex: 4,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    course.title.toUpperCase(),
+                    style: bCourseTitleStyle,
+                  ),
+                  Text(
+                    course.owner.userName.toUpperCase(),
+                    style: bCourseOwnerStyle,
+                  ),
+                  RateStars(
+                    rate: course.rate,
+                    numReviewers: course.numReviewers,
+                  ),
+                  mode == 'search'
+                      ? Text(
+                          course.price.toString() + ' \$',
+                          style: bCourseOwnerStyle,
+                        )
+                      : Container(),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
