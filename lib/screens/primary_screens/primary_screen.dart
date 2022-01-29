@@ -55,7 +55,8 @@ class PrimaryScreen extends StatelessWidget {
         onPressed: () {},
       ),
       bottomNavigationBar: BottomAppBar(
-        notchMargin: width * 0.02,
+        // notchMargin: Get.width * 0.02,
+        notchMargin: 6.0,
         color: Colors.transparent,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         shape: CircularNotchedRectangle(),

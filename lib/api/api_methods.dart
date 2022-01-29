@@ -4,7 +4,7 @@ import 'package:learn_anywhere/models/course.dart';
 import 'package:learn_anywhere/models/reviewer.dart';
 import 'package:learn_anywhere/models/user.dart';
 
-const api = 'http://192.168.1.30:8000';
+const api = 'http://192.168.1.130:8000';
 // const api = 'https://brahim-chouih-learn-anywhere.herokuapp.com';
 // const api = 'https://brahimchouih.pythonanywhere.com/';
 Dio dio = Dio();

@@ -85,7 +85,10 @@ class NotificationShoppingCart extends StatelessWidget {
             radius: width * 0.025,
             child: Text(
               numState < 10 ? '$numState' : '+9',
-              style: TextStyle(fontSize: 11),
+              style: TextStyle(
+                fontSize: 11,
+                color: Colors.white,
+              ),
             ),
           ),
         ],

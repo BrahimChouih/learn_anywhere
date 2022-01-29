@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,11 @@ import 'package:learn_anywhere/themes/primary_theme.dart';
 import 'screens/auth_screens/sign_in_up.dart';
 
 void main() {
+  // runApp(
+  //   DevicePreview(
+  //     builder: (context) => MyApp(), // Wrap your app
+  //   ),
+  // );
   runApp(MyApp());
 }
 
@@ -21,7 +27,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // theme: ThemeData.dark(),
       initialRoute: SplashScreen.id,
-
+      // builder: DevicePreview.appBuilder,
       getPages: [
         GetPage(
           name: SignInUpScreen.idSignIn,

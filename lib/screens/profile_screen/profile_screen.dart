@@ -200,7 +200,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   type: FileType.image,
                                                 )
                                                         .then((value) {
-                                                  return File(value.paths[1]);
+                                                  return File(value.paths[0]);
                                                 });
                                               } catch (e) {
                                                 print(e);
